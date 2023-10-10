@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello HomeController!{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper {
+        margin: 1em auto;
+        max-width: 800px;
+        width: 95%;
+        font: 18px/1.5 sans-serif;
+    }
+
+    .example-wrapper code {
+        background: #F5F5F5;
+        padding: 2px 6px;
+    }
+</style>
+
+<div class="example-wrapper">
+    <h1>Hello {{ controller_name }}! ✅</h1>
+</div>
+{# creer un tableau users #}
+{% set users = ["alin","mans","playboy"] %}
+{# notre boucle for dont user prend les valeur de users #}
+<p>{% for user in users %}</p>
+    {{user}}
+{% endfor %}
+<br> <br>
+{# pour les date #}
+{{"now"|date("d/m/y","Europe/Paris")}}
+<br> <br>
+{% set name = "moi" %}
+   {{name}}
+
+  {% set number = 1988 %}
+    {{number}}
+{# on a inclu une ni #}
+    {# {% include 'home/myinclude.html.twig' %} #}
+
+{% endblock %}
