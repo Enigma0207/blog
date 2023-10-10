@@ -20,6 +20,9 @@ class User
     private ?string $username = null;
 
     #[ORM\Column(length: 255)]
+    private ?string $firstname = null;
+
+    #[ORM\Column(length: 255)]
     private ?string $lastname = null;
 
     #[ORM\Column(length: 255)]
@@ -31,14 +34,7 @@ class User
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $createdAt = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $auteur = null;
-
-    #[ORM\ManyToOne(inversedBy: 'users')]
-    #[ORM\JoinColumn(nullable: false)]
-    private ?category $auter = null;
-
-    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Article::class)]
+    #[ORM\OneToMany(mappedBy: 'auteur', targetEntity: Article::class)]
     private Collection $articles;
 
     public function __construct()
@@ -59,6 +55,18 @@ class User
     public function setUsername(string $username): static
     {
         $this->username = $username;
+
+        return $this;
+    }
+
+    public function getFirstname(): ?string
+    {
+        return $this->firstname;
+    }
+
+    public function setFirstname(string $firstname): static
+    {
+        $this->firstname = $firstname;
 
         return $this;
     }
@@ -123,7 +131,7 @@ class User
     {
         if (!$this->articles->contains($article)) {
             $this->articles->add($article);
-            $article->setUser($this);
+            $article->setAuteur($this);
         }
 
         return $this;
@@ -133,15 +141,11 @@ class User
     {
         if ($this->articles->removeElement($article)) {
             // set the owning side to null (unless already changed)
-            if ($article->getUser() === $this) {
-                $article->setUser(null);
+            if ($article->getAuteur() === $this) {
+                $article->setAuteur(null);
             }
         }
 
         return $this;
     }
-
- 
-
- 
 }

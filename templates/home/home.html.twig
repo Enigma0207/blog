@@ -18,7 +18,7 @@
 </style>
 
 <div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+    <h3>Hello {{ controller_name }}! ✅</h3>
 </div>
 {# creer un tableau users #}
 {% set users = ["alin","mans","playboy"] %}
@@ -26,10 +26,10 @@
 <p>{% for user in users %}</p>
     {{user}}
 {% endfor %}
-<br> <br>
+
 {# pour les date #}
 {{"now"|date("d/m/y","Europe/Paris")}}
-<br> <br>
+
 {% set name = "moi" %}
    {{name}}
 

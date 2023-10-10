@@ -25,17 +25,14 @@ class Article
     #[ORM\Column(length: 255)]
     private ?string $image = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $article = null;
-
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
-    private ?\DateTimeInterface $createAt = null;
+    private ?\DateTimeInterface $createdAt = null;
 
     #[ORM\ManyToMany(targetEntity: category::class, inversedBy: 'articles')]
     private Collection $category;
 
     #[ORM\ManyToOne(inversedBy: 'articles')]
-    private ?user $user = null;
+    private ?user $auteur = null;
 
     public function __construct()
     {
@@ -83,26 +80,14 @@ class Article
         return $this;
     }
 
-    public function getArticle(): ?string
+    public function getCreatedAt(): ?\DateTimeInterface
     {
-        return $this->article;
+        return $this->createdAt;
     }
 
-    public function setArticle(string $article): static
+    public function setCreatedAt(\DateTimeInterface $createdAt): static
     {
-        $this->article = $article;
-
-        return $this;
-    }
-
-    public function getCreateAt(): ?\DateTimeInterface
-    {
-        return $this->createAt;
-    }
-
-    public function setCreateAt(\DateTimeInterface $createAt): static
-    {
-        $this->createAt = $createAt;
+        $this->createdAt = $createdAt;
 
         return $this;
     }
@@ -131,14 +116,14 @@ class Article
         return $this;
     }
 
-    public function getUser(): ?user
+    public function getAuteur(): ?user
     {
-        return $this->user;
+        return $this->auteur;
     }
 
-    public function setUser(?user $user): static
+    public function setAuteur(?user $auteur): static
     {
-        $this->user = $user;
+        $this->auteur = $auteur;
 
         return $this;
     }

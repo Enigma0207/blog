@@ -28,13 +28,9 @@ class Category
     #[ORM\ManyToMany(targetEntity: Article::class, mappedBy: 'category')]
     private Collection $articles;
 
-    #[ORM\OneToMany(mappedBy: 'auter', targetEntity: User::class)]
-    private Collection $users;
-
     public function __construct()
     {
         $this->articles = new ArrayCollection();
-        $this->users = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -100,36 +96,6 @@ class Category
     {
         if ($this->articles->removeElement($article)) {
             $article->removeCategory($this);
-        }
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, User>
-     */
-    public function getUsers(): Collection
-    {
-        return $this->users;
-    }
-
-    public function addUser(User $user): static
-    {
-        if (!$this->users->contains($user)) {
-            $this->users->add($user);
-            $user->setAuter($this);
-        }
-
-        return $this;
-    }
-
-    public function removeUser(User $user): static
-    {
-        if ($this->users->removeElement($user)) {
-            // set the owning side to null (unless already changed)
-            if ($user->getAuter() === $this) {
-                $user->setAuter(null);
-            }
         }
 
         return $this;
