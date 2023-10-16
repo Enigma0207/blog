@@ -37,6 +37,8 @@ class Article
     public function __construct()
     {
         $this->category = new ArrayCollection();
+        // pour que la date soit automatique
+         $this->createdAt = new \DateTime();
     }
 
     public function getId(): ?int

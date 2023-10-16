@@ -4,6 +4,10 @@
 
 {% block body %}
 <style>
+   
+    .img1{
+        width: 200px;
+    }
 </style>
 
 <div class="example-wrapper">
@@ -11,7 +15,8 @@
 </div>
 <div class="container">
     <div class="img-fluid">
-        <img src="{{article.image}}" alt="{{ article.title }}">
+        {# <img src="{{article.image}}" alt="{{ article.title }}"> #}
+        <img class="img1" src="{{ asset('/images/articles/' ~ article.image) }}" class="card-img-top" alt="{{ article.title }}">
     </div>
     <div class="content">
         <p class="date">Ecrit le {{ article.createdAt | date("d/m/y") }} à {{ article.createdAt | date("H:m") }}</p>

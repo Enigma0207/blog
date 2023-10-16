@@ -100,4 +100,10 @@ class Category
 
         return $this;
     }
+// transformer en string
+    public function __toString()
+    {
+        return $this->title;
+    }
 }
+
