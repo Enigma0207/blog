@@ -56,19 +56,36 @@
 
 {# formateur #}
 
-<div class="row justify-content-center">
-    {% for article in articles %}
-    <div class="card col-md-4 ml-4 mt-4" style="width: 18rem;">
-        <p class="date">{{ article.createdAt | date("d/m/y")}}</p>
-        {# le chemin pour afficher l'image #}
-        <img src="{{ asset('/images/articles/' ~ article.image) }}" class="card-img-top" alt="{{ article.title }}">
-        <div class="card-body">
-            <h5 class="card-title"> {{article.title }}</h5>
-            {# avec la method path 'show'le nom de la methode, {'id'est la clé cest comme ça: article.id ce qui sera envoyer dans methode})}}" #}
-            <a href="{{path('show', {'id': article.id})}}" class="btn btn-primary">En Savoir plus</a>
+<div class="d-flex justify-content-evenly">
+    <div class="row">
+        {% for article in articles %}
+        <div class="card col-md-4 ml-4 mt-4" style="width: 18rem;">
+            <p class="date">{{ article.createdAt | date("d/m/y")}}</p>
+            {# le chemin pour afficher l'image #}
+            <img src="{{ asset('/images/articles/' ~ article.image) }}" class="card-img-top" alt="{{ article.title }}">
+            <div class="card-body">
+                <h5 class="card-title"> {{article.title }}</h5>
+                {# avec la méthode path 'show', le nom de la méthode, {'id' est la clé, c'est comme ça : article.id, ce qui sera envoyé dans la méthode})}}" #}
+                <a href="{{path('show', {'id': article.id})}}" class="btn btn-primary">En Savoir plus</a>
+            </div>
         </div>
+        {% endfor %}
     </div>
-    {% endfor %}
+    <div class="category">
+        <h3>Catégories</h3>
+        {% for categorie in categories %}
+            
+            <div>
+                <a href="{{path('app_home', {'id': categorie.id})}}"><h5 class="card-title"> {{categorie.title }}</h5></a>
+                
+            </div>
+            
+        {% endfor %}
+       
+        
+        
+    </div>
 </div>
+
 
 {% endblock %}

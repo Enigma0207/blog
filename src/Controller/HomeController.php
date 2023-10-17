@@ -3,19 +3,21 @@
 namespace App\Controller;
 // on importe notre classe depuis ArticleRepository
 use App\Repository\ArticleRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Repository\CategoryRepository;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 
 class HomeController extends AbstractController
 {
     #[Route('/home', name: 'app_home')]
     // on mettre notre class dans la la () de index et on cree une variable de meme type k la class et le mettre ausi dans la (). les dependances
-    public function index(ArticleRepository $articleRepository): Response
+    public function index(ArticleRepository $articleRepository, CategoryRepository $CategoryRepository): Response
     {
         //  $articles cest une variable qui stock le tableau associatif pris à la methode findAll
         $articles = $articleRepository->findAll();
+        $categories = $CategoryRepository->findAll();
         
         // dd() cest comme var_dump
         // dd($articles);
@@ -29,8 +31,9 @@ class HomeController extends AbstractController
             //  qui contient la liste des articles récupérée à partir de la base de données. Cette clé et sa valeur sont utilisées pour afficher 
             // les articles dans votre modèle Twig 'home/home.html.twig'.
             // 
-            "articles"=> $articles
+            "articles"=> $articles,
             // "articles1"=> $articles
+             "categories"=> $categories
         ]);
     }
 // deuxieme methode recupere un article
@@ -46,4 +49,24 @@ class HomeController extends AbstractController
             'article' => $article,
         ]);
     }
+
+
+
+
+
+    // on veut afficher les categories sur la meme page que les autres cad home
+    // #[Route('/home/{id}', name: 'app_home')]
+    // public function unCategory(int $id, CategoryRepository $CategoryRepository): Response
+    // {
+    //    $categories  = $CategoryRepository->find($id);
+    //     if (!$categories) {
+    //         throw $this->createNotFoundException('L\'category n\'a pas été trouvé.');
+    //     }
+    //     return $this->render('homehome.html.twig', [
+    //         'categorie' => $categories,
+    //     ]);
+    // }
+
+
+
 }
