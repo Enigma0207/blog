@@ -10,6 +10,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 
 class ContactController extends AbstractController
 {
@@ -24,6 +25,8 @@ class ContactController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()){
             $entityManager->persist($contact);
             $entityManager->flush();
+            // Rediriger vers la page home après avoir soumis le formulaire
+             return $this->redirectToRoute('app_home');
         }
         // dd($contact);
         return $this->render('contact/contact.html.twig', [

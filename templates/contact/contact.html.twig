@@ -1,3 +1,4 @@
+{# contact/index.html.twig #}
 {% extends 'base.html.twig' %}
 
 {% block title %}Hello ContactController!{% endblock %}
@@ -11,12 +12,14 @@
 <div class="example-wrapper">
     <h1>Hello {{ controller_name }}! ✅</h1>
 
-    {# This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'C:/Users/EDW_2324/Desktop/synfony/blog/src/Controller/ContactController.php'|file_link(0) }}">src/Controller/ContactController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/Users/EDW_2324/Desktop/synfony/blog/templates/contact/index.html.twig'|file_link(0) }}">templates/contact/index.html.twig</a></code></li>
-    </ul> #}
-    {# dans form on recupere la clé contact depuis contact controller #}
-    {{form(contact)}}
+    {{ form_start(contact) }}
+    {# affiche les contrôles du formulaire #}
+    {{ form_end(contact) }}
+
 </div>
 {% endblock %}
+
+
+
+
+
